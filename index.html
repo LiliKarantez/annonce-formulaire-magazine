@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publier mon profil · Les Cœurs Solitaires</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--violet:#9B59B6;--violet-deep:#3d0a50;--violet-mid:#6b1a7a;--fuchsia:#E91E8C;--fuchsia-dark:#c0156e;--turquoise:#00BCD4;--noir:#1A1A1A;--creme:#F7F2EC;--creme-dark:#EDE5D8;--gris:#888;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--creme);color:var(--noir);overflow-x:hidden;}
+#garde{position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,var(--violet-deep) 0%,var(--violet-mid) 55%,var(--fuchsia-dark) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;transition:opacity 0.9s ease,transform 0.9s ease;}
+#garde.out{opacity:0;transform:scale(1.06);pointer-events:none;}
+.garde-orb1{position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(233,30,140,.25) 0%,transparent 70%);top:-80px;left:-80px;animation:orb 8s ease-in-out infinite;}
+.garde-orb2{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(0,188,212,.18) 0%,transparent 70%);bottom:-60px;right:-60px;animation:orb 11s ease-in-out infinite reverse;}
+@keyframes orb{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,18px)}}
+.garde-inner{position:relative;max-width:360px;}
+.garde-coeur{font-size:5rem;animation:hb 2s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(233,30,140,.7));margin-bottom:20px;display:block;}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.15)}28%{transform:scale(1)}42%{transform:scale(1.08)}56%{transform:scale(1)}}
+.garde-eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.garde-titre{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:white;line-height:1.15;margin-bottom:14px;}
+.garde-titre em{font-style:italic;color:#f9a8d4;}
+.garde-sous{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:rgba(255,255,255,.85);margin-bottom:36px;}
+.garde-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--violet-deep);border:none;border-radius:50px;padding:16px 36px;font-family:'Jost',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 8px 40px rgba(0,0,0,.4);transition:all .3s;animation:pulse 3s ease-in-out infinite;}
+.garde-btn:hover{transform:scale(1.05) translateY(-2px);}
+@keyframes pulse{0%,100%{box-shadow:0 8px 40px rgba(0,0,0,.4)}50%{box-shadow:0 8px 60px rgba(233,30,140,.45)}}
+#contenu{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+#contenu.visible{opacity:1;transform:translateY(0);}
+.nav{position:sticky;top:0;z-index:100;background:rgba(247,242,236,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(155,89,182,.12);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--noir);display:flex;align-items:center;gap:6px;}
+.nav-brand .heart{color:var(--fuchsia);}
+.nav-brand em{font-style:italic;color:var(--violet);}
+.nav-cta{background:#25D366;color:white;border:none;border-radius:50px;padding:8px 20px;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;text-decoration:none;}
+.hero{background:linear-gradient(160deg,var(--violet-deep),var(--violet-mid),var(--fuchsia-dark));padding:60px 24px 52px;text-align:center;position:relative;overflow:hidden;}
+.hero-eyebrow{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;position:relative;}
+.hero-titre{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;color:white;line-height:1.15;margin-bottom:14px;position:relative;max-width:420px;margin-left:auto;margin-right:auto;}
+.hero-titre em{font-style:italic;color:#f9a8d4;}
+.hero-sous{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:340px;margin:0 auto 32px;position:relative;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:8px 20px;font-size:.75rem;color:rgba(255,255,255,.8);position:relative;}
+.section{padding:52px 24px;}
+.section-white{background:white;}
+.section-creme{background:var(--creme);}
+.eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fuchsia);margin-bottom:10px;text-align:center;}
+.titre-section{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.2;color:var(--noir);text-align:center;margin-bottom:8px;}
+.titre-section em{font-style:italic;color:var(--violet);}
+.ligne-deco{width:40px;height:2px;background:linear-gradient(90deg,var(--violet),var(--fuchsia));margin:14px auto 24px;}
+.pack-card{background:white;border-radius:20px;padding:32px 24px;box-shadow:0 8px 40px rgba(155,89,182,.12);max-width:440px;margin:0 auto;position:relative;}
+.pack-card::before{content:'';position:absolute;inset:-2px;border-radius:22px;z-index:-1;background:linear-gradient(135deg,var(--violet),var(--fuchsia));}
+.pack-badge{display:inline-block;background:linear-gradient(135deg,var(--violet),var(--fuchsia));color:white;border-radius:50px;padding:6px 18px;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+.pack-nom{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--noir);margin-bottom:4px;}
+.pack-nom em{font-style:italic;color:var(--violet);}
+.pack-desc{font-size:.82rem;color:var(--gris);margin-bottom:16px;line-height:1.6;}
+.pack-duree{display:inline-block;background:#fff0f8;border:1px solid #f0c0dc;border-radius:20px;padding:4px 12px;font-size:.72rem;color:var(--fuchsia);font-weight:500;margin-bottom:20px;}
+.pack-inclus-titre{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris);margin-bottom:10px;}
+.pack-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--creme-dark);}
+.pack-item:last-child{border-bottom:none;}
+.pack-item-check{color:var(--turquoise);font-size:1rem;flex-shrink:0;margin-top:2px;}
+.pack-item-text strong{display:block;font-size:.82rem;font-weight:500;color:var(--noir);margin-bottom:2px;}
+.pack-item-text span{font-size:.73rem;color:var(--gris);line-height:1.5;}
+.maquette-trigger-wrap{text-align:center;margin-top:24px;}
+.maquette-trigger-btn{display:inline-flex;align-items:center;gap:8px;background:var(--creme);color:var(--violet);border:1.5px solid var(--violet);border-radius:50px;padding:12px 28px;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .25s;}
+.maquette-trigger-btn:hover{background:var(--violet);color:white;}
+#overlay-maquette{position:fixed;inset:0;z-index:2000;background:rgba(26,4,40,.88);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+#overlay-maquette.open{opacity:1;pointer-events:all;}
+.overlay-inner{background:white;border-radius:20px;width:100%;max-width:340px;overflow:hidden;transform:scale(.92) translateY(20px);transition:transform .4s ease;box-shadow:0 24px 80px rgba(0,0,0,.5);position:relative;max-height:90vh;overflow-y:auto;}
+#overlay-maquette.open .overlay-inner{transform:scale(1) translateY(0);}
+.overlay-close{position:absolute;top:12px;right:14px;background:rgba(26,26,26,.25);border:none;border-radius:50%;width:30px;height:30px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;z-index:10;}
+.maq-hero{background:linear-gradient(135deg,var(--violet-deep),var(--violet-mid),var(--fuchsia-dark));padding:28px 24px 20px;}
+.maq-nom{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:white;}
+.maq-sous{font-size:.7rem;color:rgba(255,255,255,.65);margin-top:3px;}
+.maq-body{padding:20px;}
+.maq-tabs{display:flex;border-bottom:1px solid var(--creme-dark);margin-bottom:16px;}
+.maq-tab{flex:1;text-align:center;padding:8px;font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);border-bottom:2px solid var(--violet);}
+.maq-tab.off{color:var(--gris);border-bottom-color:transparent;}
+.maq-en3mots{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--fuchsia);margin-bottom:12px;}
+.maq-photo-row{display:flex;gap:8px;margin-bottom:14px;}
+.maq-photo{flex:1;aspect-ratio:3/4;border-radius:10px;background:var(--creme-dark);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.maq-photo-blur{position:absolute;inset:0;background:linear-gradient(135deg,#d4b8e8,#f0c0dc);filter:blur(12px);transform:scale(1.1);}
+.maq-blur-block{background:var(--creme);border-radius:10px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden;}
+.maq-blur-text{font-size:.78rem;line-height:1.7;color:#444;filter:blur(4px);user-select:none;}
+.maq-blur-overlay{position:absolute;inset:0;border-radius:10px;background:rgba(247,242,236,.5);display:flex;align-items:center;justify-content:center;}
+.maq-blur-badge{background:var(--violet);color:white;border-radius:20px;padding:5px 14px;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.maq-cta{background:linear-gradient(135deg,var(--fuchsia),var(--fuchsia-dark));border-radius:10px;padding:12px;text-align:center;color:white;font-size:.75rem;font-weight:500;}
+.overlay-legende{text-align:center;padding:16px 20px 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:var(--gris);border-top:1px solid var(--creme-dark);}
+.photos-section{background:linear-gradient(135deg,var(--violet-deep),var(--violet-mid));padding:52px 24px;text-align:center;}
+.photos-titre{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:white;margin-bottom:8px;}
+.photos-titre em{font-style:italic;color:#f9a8d4;}
+.photos-sous{font-size:.82rem;color:rgba(255,255,255,.6);margin:0 auto 28px;line-height:1.6;max-width:340px;}
+.photos-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:380px;margin:0 auto 24px;}
+.photo-slot{aspect-ratio:3/4;border-radius:12px;border:2px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.photo-slot:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.1);transform:scale(1.02);}
+.photo-slot.filled{border-color:var(--turquoise);}
+.photo-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.photo-slot-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(255,255,255,.3);}
+.photo-slot-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.photo-slot-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px;display:none;}
+.photo-slot.filled .photo-slot-preview{display:block;}
+.photo-slot.filled .photo-slot-num,.photo-slot.filled .photo-slot-label{display:none;}
+.photo-slot-remove{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:white;border:none;border-radius:50%;width:22px;height:22px;font-size:.7rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:2;}
+.photo-slot.filled .photo-slot-remove{display:flex;}
+.photos-hint{font-size:.72rem;color:rgba(255,255,255,.4);font-style:italic;}
+.paiement-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:440px;margin:24px auto 0;}
+.paiement-card{background:var(--creme);border-radius:14px;padding:20px 16px;text-align:center;}
+.paiement-card.virement{border-top:3px solid var(--violet);}
+.paiement-card.paypal{border-top:3px solid #0070ba;}
+.paiement-icon{font-size:1.8rem;margin-bottom:8px;}
+.paiement-nom{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--noir);margin-bottom:6px;}
+.paiement-detail{font-size:.72rem;color:var(--gris);line-height:1.5;}
+.paiement-detail strong{color:var(--noir);display:block;font-size:.78rem;}
+.paiement-btn{display:block;color:white;border:none;border-radius:10px;padding:10px 16px;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;text-decoration:none;margin-top:12px;text-align:center;}
+.paiement-btn.violet{background:var(--violet);}
+.paiement-btn.blue{background:#0070ba;}
+.cta-section{padding:56px 24px 64px;text-align:center;background:linear-gradient(160deg,var(--violet-deep),var(--violet-mid),var(--fuchsia-dark));position:relative;overflow:hidden;}
+.cta-coeur{font-size:2.8rem;margin-bottom:16px;display:block;animation:hb 2s ease-in-out infinite;position:relative;}
+.cta-titre{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:white;margin-bottom:10px;position:relative;}
+.cta-titre em{font-style:italic;color:#f9a8d4;}
+.cta-texte{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:340px;margin:0 auto 28px;position:relative;}
+.cta-btns{display:flex;flex-direction:column;gap:12px;align-items:center;position:relative;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--violet-deep);border:none;border-radius:50px;padding:16px 32px;font-family:'Jost',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 8px 32px rgba(0,0,0,.3);transition:all .3s;width:100%;max-width:320px;justify-content:center;}
+.cta-btn:hover{transform:translateY(-2px);}
+.cta-btn.whatsapp{background:#25D366;color:white;}
+.cta-btn.whatsapp:hover{background:#1ebe5d;}
+.cta-garanties{display:flex;justify-content:center;gap:14px;margin-top:24px;font-size:.7rem;color:rgba(255,255,255,.4);position:relative;flex-wrap:wrap;}
+.cta-garanties span::before{content:"✓ ";color:var(--turquoise);}
+.footer{background:var(--noir);color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.68rem;line-height:1.8;}
+.footer a{color:rgba(255,255,255,.35);text-decoration:none;}
+.footer strong{color:rgba(255,255,255,.65);}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.4);}
+</style>
+</head>
+<body>
+
+<div id="garde">
+  <div class="garde-orb1"></div>
+  <div class="garde-orb2"></div>
+  <div class="garde-inner">
+    <span class="garde-coeur">♥</span>
+    <div class="garde-eyebrow">Les Cœurs Solitaires · Bretagne</div>
+    <div class="garde-titre">Vous aussi,<br>publiez votre <em>Portrait Mystère</em></div>
+    <div class="garde-sous">Laissez Lili raconter votre histoire !</div>
+    <button class="garde-btn" onclick="lancerContenu()">Découvrir l'offre →</button>
+  </div>
+</div>
+
+<div id="overlay-maquette">
+  <div class="overlay-inner">
+    <button class="overlay-close" onclick="fermerMaquette()">✕</button>
+    <div class="maq-hero">
+      <div class="maq-nom">Mystère ✦</div>
+      <div class="maq-sous">Morbihan · 50 ans · Portrait Mystère</div>
+    </div>
+    <div class="maq-body">
+      <div class="maq-tabs">
+        <div class="maq-tab">① Profil</div>
+        <div class="maq-tab off">② Photos</div>
+        <div class="maq-tab off">③ Rencontre</div>
+      </div>
+      <div class="maq-en3mots">Authentique · Solaire · Bienveillant</div>
+      <div class="maq-photo-row">
+        <div class="maq-photo"><div class="maq-photo-blur"></div><span style="position:relative;z-index:1;">🔒</span></div>
+        <div class="maq-photo"><div class="maq-photo-blur"></div><span style="position:relative;z-index:1;">🔒</span></div>
+        <div class="maq-photo"><div class="maq-photo-blur"></div><span style="position:relative;z-index:1;">🔒</span></div>
+      </div>
+      <div class="maq-blur-block">
+        <div class="maq-blur-text">Il ou elle commence ses journées en douceur, avec cette façon naturelle de prendre soin de l'autre. Une vie bien remplie, des passions sincères, et ce regard posé sur les choses qui dit l'essentiel. Ce qu'il ou elle cherche ? Une complicité simple, faite de confiance et de moments vrais. La mer, les balades, les soirées entre amis et quelqu'un avec qui tout partager.</div>
+        <div class="maq-blur-overlay"><div class="maq-blur-badge">🔒 Profil confidentiel</div></div>
+      </div>
+      <div class="maq-cta">💝 Mise en relation payante · 13 €</div>
+    </div>
+    <div class="overlay-legende">Votre portrait ressemblera à ceci —<br>avec votre histoire, vos photos, votre lumière.</div>
+  </div>
+</div>
+
+<div id="contenu">
+  <nav class="nav">
+    <div class="nav-brand"><span class="heart">♥</span> Les Cœurs <em>Solitaires</em></div>
+    <a href="https://wa.me/33633054456" target="_blank" class="nav-cta">💬 WhatsApp</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Portrait Mystère · Pack Publication</div>
+    <h1 class="hero-titre">Votre histoire mérite<br>d'être <em>bien racontée</em></h1>
+    <p class="hero-sous">Confiez votre profil à Lili. Elle rédige, présente, et diffuse votre Portrait Mystère auprès des célibataires de votre département.</p>
+    <div class="hero-pill">✨ Pack complet · Annonce visible 1 mois</div>
+  </section>
+
+  <section class="section section-creme">
+    <div class="eyebrow">Ce qui est inclus</div>
+    <h2 class="titre-section">Le Pack <em>Portrait Mystère</em></h2>
+    <div class="ligne-deco"></div>
+    <div class="pack-card">
+      <div class="pack-badge">⭐ Pack complet</div>
+      <div class="pack-nom">Portrait <em>Mystère</em></div>
+      <div class="pack-desc">Tout ce qu'il faut pour être vue, reconnue, et rencontrée.</div>
+      <div class="pack-duree">📅 Annonce visible 1 mois</div>
+      <div class="pack-inclus-titre">Inclus dans votre pack</div>
+      <div class="pack-item">
+        <div class="pack-item-check">✦</div>
+        <div class="pack-item-text">
+          <strong>Portrait rédigé par Lili</strong>
+          <span>Un texte chaleureux et percutant qui vous ressemble vraiment, rédigé après avoir complété un questionnaire.</span>
+        </div>
+      </div>
+      <div class="pack-item">
+        <div class="pack-item-check">✦</div>
+        <div class="pack-item-text">
+          <strong>6 photos au choix selon votre envie</strong>
+          <span>Vous sélectionnez vos 6 meilleures photos, spontanées et authentiques. Chacun est libre de les choisir.</span>
+        </div>
+      </div>
+      <div class="pack-item">
+        <div class="pack-item-check">✦</div>
+        <div class="pack-item-text">
+          <strong>Portrait Mystère Individuel + Récapitulatif dans le magazine</strong>
+          <span>Une page web dédiée partageable en un lien, et votre portrait intégré dans l'édition numérique mensuelle.</span>
+        </div>
+      </div>
+      <div class="pack-item">
+        <div class="pack-item-check">✦</div>
+        <div class="pack-item-text">
+          <strong>Mise en avant sur Facebook</strong>
+          <span>Annonce diffusée dans le groupe privé Les Cœurs Solitaires de votre département.</span>
+        </div>
+      </div>
+      <div class="maquette-trigger-wrap">
+        <button class="maquette-trigger-btn" onclick="ouvrirMaquette()">👁 Voir à quoi ressemble un portrait</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="photos-section">
+    <h2 class="photos-titre">Vos <em>6 photos</em></h2>
+    <p class="photos-sous">Choisissez librement vos 6 photos préférées, spontanées, naturelles, authentiques. Chacun est libre de les choisir selon son envie.</p>
+    <div class="photos-grille">
+      <div class="photo-slot" id="slot1"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot1','preview1')"><img class="photo-slot-preview" id="preview1" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot1','preview1')">✕</button><div class="photo-slot-num">1</div><div class="photo-slot-label">Photo</div></div>
+      <div class="photo-slot" id="slot2"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot2','preview2')"><img class="photo-slot-preview" id="preview2" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot2','preview2')">✕</button><div class="photo-slot-num">2</div><div class="photo-slot-label">Photo</div></div>
+      <div class="photo-slot" id="slot3"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot3','preview3')"><img class="photo-slot-preview" id="preview3" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot3','preview3')">✕</button><div class="photo-slot-num">3</div><div class="photo-slot-label">Photo</div></div>
+      <div class="photo-slot" id="slot4"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot4','preview4')"><img class="photo-slot-preview" id="preview4" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot4','preview4')">✕</button><div class="photo-slot-num">4</div><div class="photo-slot-label">Photo</div></div>
+      <div class="photo-slot" id="slot5"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot5','preview5')"><img class="photo-slot-preview" id="preview5" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot5','preview5')">✕</button><div class="photo-slot-num">5</div><div class="photo-slot-label">Photo</div></div>
+      <div class="photo-slot" id="slot6"><input type="file" accept="image/*" onchange="previewPhoto(this,'slot6','preview6')"><img class="photo-slot-preview" id="preview6" src="" alt=""><button class="photo-slot-remove" onclick="removePhoto(event,'slot6','preview6')">✕</button><div class="photo-slot-num">6</div><div class="photo-slot-label">Photo</div></div>
+    </div>
+    <div class="photos-hint">Touchez une case pour ajouter une photo · Aperçu instantané</div>
+  </section>
+
+  <section class="section section-white">
+    <div class="eyebrow">Règlement</div>
+    <h2 class="titre-section">Comment <em>régler ?</em></h2>
+    <div class="ligne-deco"></div>
+    <p style="font-size:.85rem;color:var(--gris);text-align:center;">Deux options simples, au choix.</p>
+    <div class="paiement-grid">
+      <div class="paiement-card virement">
+        <div class="paiement-icon">🏦</div>
+        <div class="paiement-nom">Virement</div>
+        <div class="paiement-detail"><strong>RIB sur demande</strong>Contactez Lili pour recevoir les coordonnées bancaires.</div>
+        <a href="mailto:lilikarantez@gmail.com?subject=Pack%20Portrait%2047%E2%82%AC%20%E2%80%93%20Demande%20RIB" class="paiement-btn violet">Demander le RIB</a>
+      </div>
+      <div class="paiement-card paypal">
+        <div class="paiement-icon">🅿</div>
+        <div class="paiement-nom">PayPal</div>
+        <div class="paiement-detail"><strong>paypal.me/lilikarantez</strong>Paiement immédiat et sécurisé.</div>
+        <a href="https://paypal.me/lilikarantez" target="_blank" class="paiement-btn blue">Payer via PayPal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <span class="cta-coeur">♥</span>
+    <h2 class="cta-titre">Prête à vous <em>lancer ?</em></h2>
+    <p class="cta-texte">Écrivez à Lili directement depuis ce formulaire ou par WhatsApp. Elle vous répond sous 48h.</p>
+    <div id="form-wrap" style="background:rgba(255,255,255,.1);border-radius:20px;padding:28px 20px;max-width:380px;margin:0 auto 20px;text-align:left;">
+      <div id="form-success" style="display:none;text-align:center;padding:20px 0;">
+        <div style="font-size:2.5rem;margin-bottom:12px;">💌</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:white;font-style:italic;">Message envoyé !</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-top:8px;">Lili vous répondra sous 48h.</div>
+      </div>
+      <div id="form-body">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:6px;">Votre prénom</label>
+          <input type="text" id="f-prenom" placeholder="Votre prénom" style="width:100%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 14px;color:white;font-family:'Jost',sans-serif;font-size:.85rem;outline:none;">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:6px;">Votre email</label>
+          <input type="email" id="f-email" placeholder="Votre adresse email" style="width:100%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 14px;color:white;font-family:'Jost',sans-serif;font-size:.85rem;outline:none;">
+        </div>
+        <div style="margin-bottom:20px;">
+          <label style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:6px;">Votre message</label>
+          <textarea id="f-message" rows="3" placeholder="Bonjour Lili, je souhaite publier mon Portrait Mystère..." style="width:100%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 14px;color:white;font-family:'Jost',sans-serif;font-size:.85rem;outline:none;resize:none;"></textarea>
+        </div>
+        <button onclick="envoyerFormulaire()" style="width:100%;background:white;color:var(--violet-deep);border:none;border-radius:50px;padding:14px;font-family:'Jost',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;">💌 Envoyer mon message</button>
+        <div id="form-error" style="display:none;color:#ffb3b3;font-size:.75rem;text-align:center;margin-top:10px;">Veuillez remplir tous les champs.</div>
+      </div>
+    </div>
+    <div class="cta-btns">
+      <a href="https://wa.me/33633054456?text=Bonjour%20Lili%2C%20je%20souhaite%20publier%20mon%20Portrait%20Myst%C3%A8re" target="_blank" class="cta-btn whatsapp">💬 Écrire sur WhatsApp · 06 33 05 44 56</a>
+    </div>
+    <div class="cta-garanties">
+      <span>Confidentiel</span>
+      <span>Vous validez avant publication</span>
+      <span>Annonce visible 1 mois</span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>Lili Karantez</strong> · Les Cœurs Solitaires<br>
+    Centre des Affaires Lorient La Base · 1 rue Étienne d'Orves · 56100 Lorient<br>
+    SIRET : 40149331700069 · <a href="mailto:lilikarantez@gmail.com">lilikarantez@gmail.com</a> · <a href="https://wa.me/33633054456">06 33 05 44 56</a><br>
+    © 2026 · Toute reproduction interdite
+  </footer>
+</div>
+
+<script>
+function lancerContenu() {
+  var garde = document.getElementById('garde');
+  var contenu = document.getElementById('contenu');
+  garde.classList.add('out');
+  setTimeout(function() {
+    garde.style.display = 'none';
+    contenu.classList.add('visible');
+  }, 950);
+}
+
+function ouvrirMaquette() {
+  document.getElementById('overlay-maquette').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function fermerMaquette() {
+  document.getElementById('overlay-maquette').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('overlay-maquette').addEventListener('click', function(e) {
+  if (e.target === this) { fermerMaquette(); }
+});
+
+function previewPhoto(input, slotId, previewId) {
+  if (input.files && input.files[0]) {
+    var slot = document.getElementById(slotId);
+    var preview = document.getElementById(previewId);
+    var reader = new FileReader();
+    reader.onload = function(e) { preview.src = e.target.result; slot.classList.add('filled'); };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function removePhoto(event, slotId, previewId) {
+  event.stopPropagation();
+  var slot = document.getElementById(slotId);
+  var preview = document.getElementById(previewId);
+  preview.src = '';
+  slot.classList.remove('filled');
+  slot.querySelector('input[type=file]').value = '';
+}
+
+async function envoyerFormulaire() {
+  var prenom = document.getElementById('f-prenom').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var message = document.getElementById('f-message').value.trim();
+  var errDiv = document.getElementById('form-error');
+  if (!prenom || !email || !message) { errDiv.style.display = 'block'; return; }
+  errDiv.style.display = 'none';
+  try {
+    var res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ access_key: 'd42b8d9d-a52c-4888-a489-5dd59b1b0f5b', subject: 'Pack Portrait Mystere 47 euros - ' + prenom, from_name: prenom, email: email, message: message })
+    });
+    var data = await res.json();
+    if (data.success) {
+      document.getElementById('form-body').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      errDiv.textContent = 'Une erreur est survenue. Ecrivez sur WhatsApp.';
+      errDiv.style.display = 'block';
+    }
+  } catch(e) {
+    errDiv.textContent = 'Une erreur est survenue. Ecrivez sur WhatsApp.';
+    errDiv.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
